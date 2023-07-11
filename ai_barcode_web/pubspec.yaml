@@ -1,10 +1,8 @@
-name: ai_barcode
-description: barcode,qrcode,scan,scanning,Barcode generation,Barcode scanning,qrcode,qrcode generation,qrcode creator
-version: 3.2.4
+name: ai_barcode_web
+description: scan barcode and create barcode 's plugin interface from 'ai_barcode' plugin.
+version: 3.0.1
 homepage: https://pdliuw.github.io/
 repository: https://github.com/pdliuw/ai_barcode
-publish_to: none
-
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
@@ -13,14 +11,19 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  # Support web plugin
+  flutter_web_plugins:
+    sdk: flutter
   ai_barcode_platform_interface: ^3.0.1
-  ai_barcode_web:
-    path: ../ai_barcode_web/
+  # flutter create QRCode
+  qr_flutter: ^4.1.0 # 二维码展示
+  universal_html: ^2.0.8
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.1
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -37,20 +40,14 @@ flutter:
   # However, it is required in order to declare macOS support.
   plugin:
     platforms:
-      android:
-        package: com.air.ai_barcode
-        pluginClass: AiBarcodePlugin
-      ios:
-        pluginClass: AiBarcodePlugin
-      macos:
-        pluginClass: AiBarcodePlugin
       web:
-        default_package: ai_barcode_web
+        pluginClass: AiBarcodeWebPlugin
+        fileName: ai_barcode_web.dart
 
-  # To add assets to your plugin package, add an assets section, like this:
+  # To add assets to your package, add an assets section, like this:
   # assets:
-  #  - images/a_dot_burr.jpeg
-  #  - images/a_dot_ham.jpeg
+  #   - images/a_dot_burr.jpeg
+  #   - images/a_dot_ham.jpeg
   #
   # For details regarding assets in packages, see
   # https://flutter.dev/assets-and-images/#from-packages
@@ -58,7 +55,7 @@ flutter:
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
-  # To add custom fonts to your plugin package, add a fonts section here,
+  # To add custom fonts to your package, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
